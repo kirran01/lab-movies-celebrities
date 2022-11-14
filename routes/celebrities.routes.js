@@ -9,8 +9,6 @@ router.get("/celebrities/create", (req, res, next) => {
 router.get("/celebrities", (req, res) => {
   Celebrity.find()
     .then((celebritiesArr) => {
-    //   console.log(celebrities, "celebs from promise find");
-
       res.render("celebrities/celebrities", { celebritiesArr });
     })
     .catch((err) => {
@@ -24,12 +22,9 @@ router.post("/celebrities/create", (req, res) => {
     occupation: req.body.occupation,
     catchPhrase: req.body.catchPhrase,
   })
-    .then((newCelebrity) => {
-      console.log(newCelebrity);
-    //   res.send(newCelebrity);
+    .then(() => {
       res.redirect('/celebrities')
     })
-    
     .catch((err) => {
       res.send(err);
     });
