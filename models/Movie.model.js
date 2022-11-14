@@ -11,5 +11,5 @@ const movieSchema = new Schema({
   }]
 });
 
-const Celebrity = mongoose.model("Celebrity", celebritySchema);
-module.exports = Celebrity;
+const Movie = mongoose.model("Movie", movieSchema);
+module.exports = Movie;

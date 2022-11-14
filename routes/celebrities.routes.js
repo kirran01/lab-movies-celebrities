@@ -3,13 +3,13 @@ const router = require("express").Router();
 const Celebrity = require("../models/Celebrity.model");
 
 router.get("/celebrities/create", (req, res, next) => {
-  res.render("celebrities/new-celebrity");
+  res.render("celebrities/new-celebrity.hbs");
 });
 
 router.get("/celebrities", (req, res) => {
   Celebrity.find()
     .then((celebritiesArr) => {
-      res.render("celebrities/celebrities", { celebritiesArr });
+      res.render("celebrities/celebrities.hbs", { celebritiesArr });
     })
     .catch((err) => {
       res.send(err);
