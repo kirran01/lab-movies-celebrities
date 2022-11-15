@@ -1,13 +1,19 @@
 // starter code in both routes/celebrities.routes.js and routes/movies.routes.js
 const router = require("express").Router();
 const Movie = require("../models/Movie.model");
+const Celebrity = require("../models/Celebrity.model");
+const { route } = require("./celebrities.routes");
 
 router.get("/movies/create", (req, res) => {
-  res.render("movies/new-movie");
+  Celebrity.find().then((celebrities) => {
+    res.render("movies/new-movie", { celebrities });
+  });
 });
 
 router.get("/movies", (req, res) => {
-  res.render("movies/movies");
+  Movie.find().then((movies) => {
+    res.render("movies/movies", { movies });
+  });
 });
 
 router.post("/movies/create", (req, res) => {
@@ -16,7 +22,7 @@ router.post("/movies/create", (req, res) => {
     title: req.body.title,
     genre: req.body.genre,
     plot: req.body.plot,
-    cast: [],
+    cast: req.body.cast,
   })
     .then(() => {
       res.redirect("/movies");
